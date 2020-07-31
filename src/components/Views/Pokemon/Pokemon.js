@@ -55,6 +55,7 @@ class Pokemon extends Component {
   };
 
   render() {
+    //This makes render not a pure function. But I was challenged, so what the hell :)
     if (this.state.updateNeeded && this.props.store.pokemonReducer.length > 0) {
       this.updatePokemon();
     }
