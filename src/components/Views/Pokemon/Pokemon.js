@@ -7,25 +7,41 @@ class Pokemon extends Component {
     pokemon: {
       types: [],
     },
+    updateNeeded: false,
   };
 
   componentDidMount() {
-    console.log(this.props.match.params.id);
+    if (this.props.store.pokemonReducer.length == 0) {
+      return this.setState(
+        {
+          updateNeeded: true,
+        },
+        () => {
+          console.log('Update needed!', this.state.updateNeeded);
+          this.props.dispatch({ type: 'GET_POKEMON' });
+        }
+      );
+    }
 
+    this.updatePokemon();
+  }
+
+  updatePokemon() {
     let currentId = this.props.match.params.id;
     let currentPokemon = {};
 
     for (let pokemon of this.props.store.pokemonReducer) {
-      console.log(currentId);
-      console.log(pokemon);
       if (currentId == pokemon.id) {
         currentPokemon = pokemon;
       }
     }
 
+    console.log('Yerp');
+
     this.setState(
       {
         pokemon: currentPokemon,
+        updateNeeded: false,
       },
       () => {
         document.title = this.state.pokemon.name;
@@ -39,6 +55,10 @@ class Pokemon extends Component {
   };
 
   render() {
+    if (this.state.updateNeeded && this.props.store.pokemonReducer.length > 0) {
+      this.updatePokemon();
+    }
+
     const typesArray = this.state.pokemon.types
       ? this.state.pokemon.types.map((item, index) => {
           return <span>{item.toUpperCase()} </span>;
