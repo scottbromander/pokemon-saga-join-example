@@ -1,0 +1,8 @@
+.currentPokemon img {
+  width: 200px;
+  margin-top: 25px;
+}
+
+.currentPokemon p {
+  padding: 0 25%;
+}

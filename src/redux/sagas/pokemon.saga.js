@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function* getPokemon(action) {
   try {
-    const response = yield axios.get('/api/pokemon');
+    const response = yield axios.get('/api/pokemon/full');
     yield put({
       type: 'SET_POKEMON',
       payload: response.data,

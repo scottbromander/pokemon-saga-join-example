@@ -8,7 +8,12 @@ class PokemonList extends Component {
     console.log(this.props.store);
     const pokemonListHtmlArray = this.props.store.pokemonReducer.map(
       (item, index) => {
-        return <PokemonListItem pokemon={item} />;
+        return (
+          <PokemonListItem
+            pokemon={item}
+            clickPokemon={this.props.clickPokemon}
+          />
+        );
       }
     );
 
