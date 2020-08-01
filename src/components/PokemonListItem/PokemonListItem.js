@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import './PokemonListItem.css';
 
 class PokemonListItem extends Component {
-  componentDidMount() {
-    console.log(this.props);
-  }
-
   render() {
     return (
       <div

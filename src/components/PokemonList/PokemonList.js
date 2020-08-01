@@ -5,11 +5,11 @@ import PokemonListItem from '../PokemonListItem/PokemonListItem';
 
 class PokemonList extends Component {
   render() {
-    console.log(this.props.store);
     const pokemonListHtmlArray = this.props.store.pokemonReducer.map(
       (item, index) => {
         return (
           <PokemonListItem
+            key={index}
             pokemon={item}
             clickPokemon={this.props.clickPokemon}
           />
